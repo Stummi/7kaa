@@ -105,6 +105,7 @@
 #include <OINGMENU.h>
 // ###### end Gilbert 23/10 #######//
 #include <dbglog.h>
+#include <stdio.h>
 
 //------- define game version constant --------//
 
@@ -313,6 +314,8 @@ int main(int argc, char **argv)
 	const char *lobbyJoinCmdLine = "-join";
 	const char *lobbyHostCmdLine = "-host";
 	const char *lobbyNameCmdLine = "-name";
+	const char *versionCmdLine = "-version";
+
 	char *join_host = NULL;
 	int lobbied = 0;
 
@@ -355,6 +358,12 @@ int main(int argc, char **argv)
 			strncpy(config.player_name, argv[i+1], config.PLAYER_NAME_LEN);
 			config.player_name[config.PLAYER_NAME_LEN] = 0;
 			i++;
+		} else if (!strcmp(argv[i], versionCmdLine)) {
+			printf("Seven Kingdoms: Ancient Adversaries\n");
+			printf("Version: %s\n\n", VERSION);
+			printf("More informations on http://www.7kfans.com\n");
+			return 0;
+
 		}
 	}
 
