@@ -419,7 +419,7 @@ int main(int argc, char **argv)
 
 	sys.deinit();
 
-	return 1;
+	return 0;
 }
 //---------- End of function main ----------//
 
