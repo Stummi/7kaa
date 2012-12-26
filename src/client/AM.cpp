@@ -315,6 +315,7 @@ int main(int argc, char **argv)
 	const char *lobbyHostCmdLine = "-host";
 	const char *lobbyNameCmdLine = "-name";
 	const char *versionCmdLine = "-version";
+	const char *windowCmdLine = "-window";
 
 	char *join_host = NULL;
 	int lobbied = 0;
@@ -363,7 +364,8 @@ int main(int argc, char **argv)
 			printf("Version: %s\n\n", VERSION);
 			printf("More informations on http://www.7kfans.com\n");
 			return 0;
-
+		} else if (!strcmp(argv[i], windowCmdLine)) {
+			sys.toggle_full_screen_flag=0;
 		}
 	}
 
