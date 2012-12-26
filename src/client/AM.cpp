@@ -354,7 +354,7 @@ int main(int argc, char **argv)
 			lobbied = 1;
 		} else if (!strcmp(argv[i], playerNameCmdLine)) {
 			if (i >= argc - 1) {
-				ERR("The %s switch requires a player name parameter.\n", lobbyNameCmdLine);
+				ERR("The %s switch requires a player name parameter.\n", playerNameCmdLine);
 				return 1;
 			}
 			strncpy(config.player_name, argv[i+1], config.PLAYER_NAME_LEN);
