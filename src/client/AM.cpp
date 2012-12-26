@@ -313,9 +313,10 @@ int main(int argc, char **argv)
 {
 	const char *lobbyJoinCmdLine = "-join";
 	const char *lobbyHostCmdLine = "-host";
-	const char *lobbyNameCmdLine = "-name";
-	const char *versionCmdLine = "-version";
+	const char *playerNameCmdLine = "-name";
 	const char *windowCmdLine = "-window";
+	const char *versionCmdLine = "-version";
+	const char *helpCmdLine = "-help";
 
 	char *join_host = NULL;
 	int lobbied = 0;
@@ -351,21 +352,34 @@ int main(int argc, char **argv)
 				return 1;
 			}
 			lobbied = 1;
-		} else if (!strcmp(argv[i], lobbyNameCmdLine)) {
+		} else if (!strcmp(argv[i], playerNameCmdLine)) {
 			if (i >= argc - 1) {
-				ERR("The %s switch requires a hostname parameter.\n", lobbyNameCmdLine);
+				ERR("The %s switch requires a player name parameter.\n", lobbyNameCmdLine);
 				return 1;
 			}
 			strncpy(config.player_name, argv[i+1], config.PLAYER_NAME_LEN);
 			config.player_name[config.PLAYER_NAME_LEN] = 0;
 			i++;
+		} else if (!strcmp(argv[i], windowCmdLine)) {
+			sys.toggle_full_screen_flag=0;
 		} else if (!strcmp(argv[i], versionCmdLine)) {
 			printf("Seven Kingdoms: Ancient Adversaries\n");
 			printf("Version: %s\n\n", VERSION);
 			printf("More informations on http://www.7kfans.com\n");
 			return 0;
-		} else if (!strcmp(argv[i], windowCmdLine)) {
-			sys.toggle_full_screen_flag=0;
+		} else if (!strcmp(argv[i], helpCmdLine)) {
+			printf("Command line Options: \n"
+				"  -join      join a multiplayer game\n"
+				"  -host      host a multiplayer game\n"
+				"  -name      players name\n"
+				"  -window    start in windowed mode\n"
+				"  -version   print out the version of the game\n"
+				"  -help      print out help text\n"
+			);
+			return 0;
+		} else {
+			printf("unrecognized option: '%s'\n", argv[i]);
+			return 1;
 		}
 	}
 
